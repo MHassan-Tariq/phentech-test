@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function saveCart() {
-    localStorage.setItem('luxemarket_cart', JSON.stringify(cart));
+    localStorage.setItem('phentech_cart', JSON.stringify(cart));
   }
 
   function updateCartBadge() {
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
       if (cart.length === 0) return;
-      alert('🎉 Thank you for trying out LuxeMarket! Checkout system integration complete.');
+      alert('🎉 Thank you for trying out PhenTech! Checkout system integration complete.');
       cart = [];
       saveCart();
       updateCartBadge();

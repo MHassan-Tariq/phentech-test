@@ -1,0 +1,91 @@
+/**
+ * Product Listing Data
+ * Contains 6 featured products with details, categories, prices, ratings, and image assets.
+ */
+
+const productsData = [
+  {
+    id: 1,
+    name: "Aura ANC Wireless Headphones",
+    category: "Audio",
+    price: 249.99,
+    originalPrice: 299.99,
+    rating: 4.9,
+    reviewsCount: 142,
+    image: "assets/images/headphones.jpg",
+    badge: "Bestseller",
+    badgeType: "bg-danger",
+    description: "Industry-leading active noise cancellation with premium acoustic driver for ultra-crisp audio clarity and up to 40 hours battery life.",
+    features: ["Active Noise Cancellation", "40-Hour Battery", "Bluetooth 5.3", "Custom Sound EQ"]
+  },
+  {
+    id: 2,
+    name: "Pulse Ultra Smartwatch Series 7",
+    category: "Wearables",
+    price: 199.99,
+    originalPrice: 229.99,
+    rating: 4.7,
+    reviewsCount: 98,
+    image: "assets/images/smartwatch.jpg",
+    badge: "New",
+    badgeType: "bg-primary",
+    description: "Advanced fitness tracker featuring edge-to-edge AMOLED display, heart rate monitor, SPO2 sensor, and 50m water resistance.",
+    features: ["AMOLED Touchscreen", "Heart & SpO2 Tracking", "GPS Enabled", "50m Water Resistance"]
+  },
+  {
+    id: 3,
+    name: "ErgoFlow Wireless Mouse",
+    category: "Accessories",
+    price: 79.99,
+    originalPrice: 99.99,
+    rating: 4.8,
+    reviewsCount: 210,
+    image: "assets/images/mouse.jpg",
+    badge: "Hot Deal",
+    badgeType: "bg-warning text-dark",
+    description: "Sculpted ergonomic design crafted to reduce wrist strain by 57%. Dual wireless connection via Bluetooth and 2.4GHz USB dongle.",
+    features: ["Ergonomic 57° Angle", "Precision 4000 DPI", "Multi-Device Pairing", "Customizable Buttons"]
+  },
+  {
+    id: 4,
+    name: "Lumino RGB Mechanical Keyboard",
+    category: "Gaming",
+    price: 129.99,
+    originalPrice: 159.99,
+    rating: 4.9,
+    reviewsCount: 175,
+    image: "assets/images/keyboard.jpg",
+    badge: "Top Rated",
+    badgeType: "bg-success",
+    description: "Compact 65% mechanical keyboard with hot-swappable tactile switches, per-key RGB backlighting, and solid aluminum chassis.",
+    features: ["Hot-Swappable Switches", "Per-Key RGB", "65% Compact Layout", "Double-Shot PBT Keycaps"]
+  },
+  {
+    id: 5,
+    name: "SoundSphere Portable Speaker",
+    category: "Audio",
+    price: 89.99,
+    originalPrice: 109.99,
+    rating: 4.6,
+    reviewsCount: 88,
+    image: "assets/images/speaker.jpg",
+    badge: "Popular",
+    badgeType: "bg-info text-dark",
+    description: "360-degree immersive sound in a compact, IPX7 waterproof enclosure. Built for outdoor adventures and room-filling music playback.",
+    features: ["360° Surround Sound", "IPX7 Waterproof", "18-Hour Playtime", "PartySync Link"]
+  },
+  {
+    id: 6,
+    name: "VisionPro 4K Ultra HD Webcam",
+    category: "Accessories",
+    price: 119.99,
+    originalPrice: 139.99,
+    rating: 4.8,
+    reviewsCount: 64,
+    image: "assets/images/webcam.jpg",
+    badge: "Featured",
+    badgeType: "bg-secondary",
+    description: "Crystal clear 4K UHD video recording with dual noise-canceling microphones, auto-focus lens, and magnetic privacy shutter.",
+    features: ["4K UHD 30FPS", "Dual Noise-Canceling Mics", "Auto Light Adjustment", "Privacy Shutter"]
+  }
+];

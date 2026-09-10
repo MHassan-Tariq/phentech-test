@@ -1,8 +1,3 @@
-/**
- * Product Listing Data
- * Contains 6 featured products with details, categories, prices, ratings, and image assets.
- */
-
 const productsData = [
   {
     id: 1,

@@ -1,16 +1,9 @@
-/**
- * LuxeMarket Product Listing Application Logic
- * Manages rendering, real-time search, category filtering, sorting, and cart state.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Application State
-  let cart = JSON.parse(localStorage.getItem('luxemarket_cart')) || [];
+  let cart = JSON.parse(localStorage.getItem('phentech_cart')) || [];
   let currentCategory = 'All';
   let searchQuery = '';
   let sortBy = 'default';
 
-  // DOM Elements
   const productsGrid = document.getElementById('products-grid');
   const emptyState = document.getElementById('empty-state');
   const resultsCount = document.getElementById('results-count');
@@ -31,30 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastMessage = document.getElementById('toast-message');
   const quickViewModal = new bootstrap.Modal(document.getElementById('quickViewModal'));
 
-  // Initialize App
   initCategoryFilters();
   updateCartBadge();
   renderCartDrawer();
   renderProducts();
 
-  // --- Category Filters Setup ---
   function initCategoryFilters() {
-    // Extract unique categories
     const categories = ['All', ...new Set(productsData.map(p => p.category))];
 
-    // Render Pills
     categoryContainer.innerHTML = categories.map(cat => `
       <button class="category-btn ${cat === currentCategory ? 'active' : ''}" data-category="${cat}">
         ${cat}
       </button>
     `).join('');
 
-    // Render Select options for mobile view sync
     categorySelect.innerHTML = categories.map(cat => `
       <option value="${cat}" ${cat === currentCategory ? 'selected' : ''}>${cat}</option>
     `).join('');
 
-    // Event listeners for category buttons
     categoryContainer.querySelectorAll('.category-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const cat = e.target.getAttribute('data-category');
@@ -62,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Event listener for select dropdown
     categorySelect.addEventListener('change', (e) => {
       setCategory(e.target.value);
     });
@@ -71,26 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
   function setCategory(category) {
     currentCategory = category;
     
-    // Update active class on pills
     categoryContainer.querySelectorAll('.category-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-category') === category);
     });
 
-    // Update select element value
     categorySelect.value = category;
 
     renderProducts();
   }
 
-  // --- Search Listeners ---
   function handleSearch(query) {
     searchQuery = query.trim().toLowerCase();
     
-    // Sync both search inputs (navbar search and main filter bar search)
     if (searchInput) searchInput.value = query;
     if (navSearchInput) navSearchInput.value = query;
 
-    // Toggle clear search button visibility
     if (clearSearchBtn) {
       clearSearchBtn.style.display = searchQuery ? 'block' : 'none';
     }
@@ -108,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearSearchBtn.addEventListener('click', () => handleSearch(''));
   }
 
-  // --- Sorting Listener ---
   if (sortSelect) {
     sortSelect.addEventListener('change', (e) => {
       sortBy = e.target.value;
@@ -116,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Render Products Function ---
   function renderProducts() {
-    // 1. Filter by category
     let filtered = productsData.filter(product => {
       const matchCategory = (currentCategory === 'All') || (product.category === currentCategory);
       const matchQuery = !searchQuery || 
@@ -128,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return matchCategory && matchQuery;
     });
 
-    // 2. Sort Products
     if (sortBy === 'price-low') {
       filtered.sort((a, b) => a.price - b.price);
     } else if (sortBy === 'price-high') {
@@ -139,10 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
       filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    // Update results counter
     resultsCount.textContent = `Showing ${filtered.length} of ${productsData.length} products`;
 
-    // Handle empty state
     if (filtered.length === 0) {
       productsGrid.style.display = 'none';
       emptyState.style.display = 'block';
@@ -152,37 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
     productsGrid.style.display = 'flex';
     emptyState.style.display = 'none';
 
-    // 3. Render HTML Grid cards (3 per row desktop: col-lg-4, 2 per row tablet: col-md-6, 1 per row mobile: col-12)
     productsGrid.innerHTML = filtered.map(product => {
       const isDiscounted = product.originalPrice > product.price;
       
       return `
         <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
           <div class="product-card w-100">
-            <!-- Badge -->
             ${product.badge ? `
               <div class="card-badge-top">
                 <span class="badge ${product.badgeType}">${product.badge}</span>
               </div>
             ` : ''}
             
-            <!-- Quick View Icon Button -->
             <button class="btn-quick-view" data-id="${product.id}" title="Quick View">
               <i class="bi bi-eye"></i>
             </button>
 
-            <!-- Image Container -->
             <div class="card-img-wrapper">
               <img src="${product.image}" alt="${product.name}" loading="lazy">
             </div>
 
-            <!-- Card Body -->
             <div class="card-body p-4 d-flex flex-column justify-content-between">
               <div>
                 <span class="category-tag">${product.category}</span>
                 <h3 class="product-title">${product.name}</h3>
                 
-                <!-- Rating -->
                 <div class="rating-wrapper">
                   <i class="bi bi-star-fill"></i>
                   <span class="fw-bold text-dark me-1">${product.rating}</span>
@@ -192,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="product-description">${product.description}</p>
               </div>
 
-              <!-- Card Footer: Price & Add to Cart -->
               <div>
                 <div class="d-flex align-items-center justify-content-between mb-3">
                   <div class="price-container">
@@ -211,12 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }).join('');
 
-    // Attach Event Listeners to generated buttons
     attachCardEventListeners();
   }
 
   function attachCardEventListeners() {
-    // Add to Cart buttons
     document.querySelectorAll('.btn-add-cart').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = parseInt(e.currentTarget.getAttribute('data-id'));
@@ -224,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Quick View buttons
     document.querySelectorAll('.btn-quick-view').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = parseInt(e.currentTarget.getAttribute('data-id'));
@@ -233,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Cart Operations ---
   function addToCart(productId, buttonElem = null) {
     const product = productsData.find(p => p.id === productId);
     if (!product) return;
@@ -250,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCartDrawer();
     showToast(`Added <strong>${product.name}</strong> to your cart!`);
 
-    // UI button feedback micro-animation
     if (buttonElem) {
       const originalHTML = buttonElem.innerHTML;
       buttonElem.classList.add('added');
@@ -293,9 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartBadge.textContent = totalCount;
 
-    // Trigger bounce animation on badge update
     cartBadge.classList.remove('bounce');
-    void cartBadge.offsetWidth; // trigger reflow
+    void cartBadge.offsetWidth;
     cartBadge.classList.add('bounce');
   }
 
@@ -353,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cartTax.textContent = `$${tax.toFixed(2)}`;
     cartTotal.textContent = `$${total.toFixed(2)}`;
 
-    // Free Shipping Progress
     const freeShippingTarget = 50.00;
     const progressPercent = Math.min(100, (subtotal / freeShippingTarget) * 100);
     if (freeShippingProgress) freeShippingProgress.style.width = `${progressPercent}%`;
@@ -366,7 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Attach listeners to cart drawer quantity & delete buttons
     cartItemsList.querySelectorAll('.btn-qty-minus').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = parseInt(e.currentTarget.getAttribute('data-id'));
@@ -389,7 +349,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Toast Notification ---
   function showToast(message) {
     if (!toastElement) return;
     toastMessage.innerHTML = message;
@@ -397,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.show();
   }
 
-  // --- Quick View Modal Functionality ---
   function openQuickView(productId) {
     const product = productsData.find(p => p.id === productId);
     if (!product) return;
@@ -422,7 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
     quickViewModal.show();
   }
 
-  // Global reset search & filters button in Empty State
   const resetFiltersBtn = document.getElementById('reset-filters-btn');
   if (resetFiltersBtn) {
     resetFiltersBtn.addEventListener('click', () => {
@@ -433,7 +390,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Checkout Button Trigger
   const checkoutBtn = document.getElementById('checkout-btn');
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {

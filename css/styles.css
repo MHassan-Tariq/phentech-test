@@ -1,11 +1,9 @@
-/* Custom Styles for LuxeMarket Product Listing Page */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
 
 :root {
   --font-primary: 'Inter', sans-serif;
   --font-heading: 'Outfit', sans-serif;
   
-  /* Color Palette */
   --primary-color: #6366f1;
   --primary-hover: #4f46e5;
   --primary-light: #e0e7ff;
@@ -18,7 +16,6 @@
   --text-muted: #94a3b8;
   --border-color: #e2e8f0;
   
-  /* Shadows & Glassmorphism */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 10px 25px -5px rgba(99, 102, 241, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
@@ -38,7 +35,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   font-family: var(--font-heading);
 }
 
-/* Glassmorphism Navbar */
 .sticky-navbar {
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
@@ -66,7 +62,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/* Navbar Cart Button & Badge Animation */
 .btn-cart-nav {
   background: #f1f5f9;
   color: var(--text-primary);
@@ -104,7 +99,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   100% { transform: scale(1); }
 }
 
-/* Hero & Filter Section */
 .hero-banner {
   background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
   color: white;
@@ -128,7 +122,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   pointer-events: none;
 }
 
-/* Search Box Styling */
 .search-wrapper {
   position: relative;
 }
@@ -179,7 +172,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   color: var(--text-primary);
 }
 
-/* Category Filter Pills */
 .category-pills {
   display: flex;
   gap: 0.5rem;
@@ -211,7 +203,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/* Select Control Styling */
 .custom-select {
   border-radius: 12px;
   height: 44px;
@@ -226,7 +217,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* Product Card Styling */
 .product-card {
   border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: 20px;
@@ -248,7 +238,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 .card-img-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 75%; /* 4:3 Aspect Ratio */
+  padding-top: 75%;
   overflow: hidden;
   background-color: #f8fafc;
 }
@@ -267,7 +257,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   transform: scale(1.08);
 }
 
-/* Floating Badges */
 .card-badge-top {
   position: absolute;
   top: 1rem;
@@ -321,7 +310,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   overflow: hidden;
 }
 
-/* Rating Stars */
 .rating-wrapper {
   display: flex;
   align-items: center;
@@ -338,7 +326,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   margin-left: 0.25rem;
 }
 
-/* Pricing Section */
 .price-container {
   display: flex;
   align-items: baseline;
@@ -358,7 +345,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   text-decoration: line-through;
 }
 
-/* Add to Cart Button */
 .btn-add-cart {
   background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
   color: #ffffff;
@@ -392,7 +378,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
 }
 
-/* Quick View Button */
 .btn-quick-view {
   position: absolute;
   bottom: 1rem;
@@ -425,7 +410,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   border-color: var(--primary-color);
 }
 
-/* Empty State Styling */
 .empty-state {
   padding: 4rem 2rem;
   text-align: center;
@@ -447,7 +431,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   margin-bottom: 1.25rem;
 }
 
-/* Offcanvas Cart Item Styling */
 .cart-item-row {
   display: flex;
   align-items: center;
@@ -498,7 +481,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   color: #dc2626;
 }
 
-/* Toast Container */
 .toast-container {
   z-index: 1090;
 }
@@ -511,7 +493,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive adjustments */
 @media (max-width: 991.98px) {
   .hero-banner {
     padding: 1.75rem 1.25rem;
